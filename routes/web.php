@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('project.top');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::controller(SearchController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'top')->name('top');
+    Route::get('/search', 'search')->name('search');
+    Route::get('/search/{recipeHistory}', 'show')->name('show');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
