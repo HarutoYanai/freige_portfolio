@@ -14,8 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased ">
+        <div class="min-h-screen bg-yellow-100 flex flex-col">
             @include('layouts.navigation')
 
             <!-- Page Heading 
@@ -28,9 +28,17 @@
             @endif  -->
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-grow">
                 {{ $slot }}
             </main>
+
+            <footer class="bg-yellow-50 border-t border-gray-100">
+                <!-- Rakuten Web Services Attribution Snippet FROM HERE -->
+                <div class="text-zinc-500 text-right py-5 pr-8 ">
+                    <a href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a>
+                </div>
+                <!-- Rakuten Web Services Attribution Snippet TO HERE -->
+            </footer>
         </div>
     </body>
 </html>
