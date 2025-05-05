@@ -1,33 +1,44 @@
 <x-app-layout>
-    <div class="">
-        <p>{{ $recipe->recipe_title }}</p>
+    <div class="text-zinc-500 border-b-2 border-gray-400 py-8 px-10 mx-52">
+        <div class="flex justify-between gap-x-1">
+            <div class="bg-yellow-50 border border-amber-300 flex flex-col justify-center px-4 mt-8">
+                <div class="text-2xl font-medium">
+                    <p>{{ $recipe->recipe_title }}</p>
+                </div>
+                <div class="text-xl ml-6 mt-3">
+                    <p>ランキング：{{ $recipe->rank }}位</p>
+                </div>
+            </div>
+            <div class="">
+                <img src="{{ $recipe->image_url }}" class="size-60">
+            </div>
+        </div>
     </div>
 
-    <div class="">
-        <img src="{{ $recipe->image_url }}">
-    </div>
-    <div class="">
-        <p>ランキング：{{ $recipe->rank }}位</p>
-    </div>
-
-    <div class="">
-        <div class="">
+    <div class="text-zinc-500 px-12 py-8 mx-52">
+        <div class="text-2xl">
             <p>材料</p>
         </div>
-        <div class="">
+        <div class="mx-8 my-6">
             @foreach($recipe['recipe_material'] as $material)
+            <div class="mb-1">
                 <p>{{ $material }}</p>
+            </div>
             @endforeach
         </div>
-    </div>
-
-    <div class="">
-        <div class="">
-            <p>詳しい調理方法はこちら</p>
+        
+        <div class="flex flex-col">
+            <div class="text-xl flex justify-end">
+                <div class="">
+                    <p>詳しい調理方法は</p>
+                </div>
+                <div class="text-blue-400 underline">
+                    <a href="{{ $recipe->recipe_url }}">こちら</a>
+                </div>
+            </div>
+            <div class="text-right">
+                <p>※楽天レシピに飛びます</p>
+            </div>
         </div>
-        <div class="">
-            <a href="{{ $recipe->recipe_url }}">こちら</a>
-        </div>
     </div>
-
 </x-app-layout>
