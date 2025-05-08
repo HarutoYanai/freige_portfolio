@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\RecipeHistory;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use RakutenRws_Client;
-//require_once dirname(__FILE__, 4) . '/vendor/rakuten-ws/rws-php-sdk/autoload.php';
+
 
 class SearchController extends Controller
 {
@@ -78,9 +79,11 @@ class SearchController extends Controller
         }
     }
     
-    public function show(RecipeHistory $recipeHistory) {
+    public function show(RecipeHistory $recipe) {
         //dd($recipeHistory);
-        return view('project.view')->with('recipe', $recipeHistory);
+        $review = new Review;
+        $reviews = $review->where('recipe_id', $recipe->recipe_id)->latestLimit(5)->get();
+        return view('project.view', compact('recipe', 'reviews'));
        
     }
     

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="text-zinc-500 border-b-2 border-gray-400 py-8 px-10 mx-52">
+    <div class="text-zinc-500 border-b-2 border-gray-400 px-10 py-8 mx-52">
         <div class="flex justify-between gap-x-1">
             <div class="bg-yellow-50 border border-amber-300 flex flex-col justify-center px-4 mt-8">
                 <div class="text-2xl font-medium">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="text-zinc-500 px-12 py-8 mx-52">
+    <div class="text-zinc-500 border-b-2 border-gray-400 px-12 py-8 mx-52">
         <div class="text-2xl">
             <p>材料</p>
         </div>
@@ -38,6 +38,32 @@
             </div>
             <div class="text-right">
                 <p>※楽天レシピに飛びます</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-zinc-500 px-12 py-8 mx-52">
+        <div class="">
+            <div class="text-2xl">
+                <p>レビュー</p>
+            </div>
+            <div class="mx-8 my-6">
+                @foreach ($reviews as $review)
+                    <div class="bg-yellow-50 mb-2">
+                        <div class="p-4">
+                            <p class="text-xl">{{ $review->user_name }}</p>
+                            <p class="mx-2 my-1">{{ $review->comment }}</p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="text-xl flex justify-end">
+                <div class="">
+                    <p>レビュー作成は</p>
+                </div>
+                <div class="text-blue-400 underline">
+                    <a href="{{ route('review.create', ['recipe' => $recipe['recipe_id']]) }}">こちら</a>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,12 @@ Route::get('/dashboard', function () {
 Route::controller(SearchController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'top')->name('top');
     Route::get('/search', 'search')->name('search');
-    Route::get('/search/{recipeHistory}', 'show')->name('show');
+    Route::get('/search/{recipe}', 'show')->name('search.show');
+});
+
+Route::controller(ReviewController::class)->middleware(['auth'])->group(function(){
+    Route::get('/review/{recipe}/create', 'create')->name('review.create');
+    Route::post('/review/{recipe}/post', 'post')->name('review.post');
 });
 
 

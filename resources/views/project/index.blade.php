@@ -10,7 +10,7 @@
 
     <div class="text-zinc-500 mx-64 pb-5">
         @foreach ($recipes as $recipe)
-        <a href="/search/{{ $recipe['recipe_id'] }}">
+        <a href="{{ route('search.show', ['recipe' => $recipe['recipe_id']]) }}">
             <div class="bg-yellow-50 shadow-sm flex justify-between p-6 mb-8 gap-x-6 rounded-md hover:shadow-md">
                 <div class="text-xl">
                         <h2>{{ $recipe['recipe_title'] }} </h2>
