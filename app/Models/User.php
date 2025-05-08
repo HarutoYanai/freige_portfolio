@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    //recipeHistoryに対するリレーション
+    public function recipeHistories() {
+        return $this->hasMany(RecipeHistory::class);
+    }
+    //reviewに対するリレーション
+    public function reviews() {
+        return $this->hasMany(review::class);
+    }
+    
 }

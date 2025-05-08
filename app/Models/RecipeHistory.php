@@ -9,6 +9,11 @@ class RecipeHistory extends Model
 {
     use HasFactory;
     
+    //Userに対するリレーション
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+    
     /*
     モデルのルートキーの取得
     @return string
