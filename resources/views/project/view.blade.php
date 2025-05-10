@@ -16,7 +16,7 @@
     </div>
 
     <div class="text-zinc-500 border-b-2 border-gray-400 px-12 py-8 mx-52">
-        <div class="text-2xl">
+        <div class="text-2xl font-medium">
             <p>材料</p>
         </div>
         <div class="mx-8 my-6">
@@ -44,12 +44,12 @@
 
     <div class="text-zinc-500 px-12 py-8 mx-52">
         <div class="">
-            <div class="text-2xl">
+            <div class="text-2xl font-medium">
                 <p>レビュー</p>
             </div>
             <div class="mx-8 my-6">
                 @foreach ($reviews as $review)
-                    <div class="bg-yellow-50 mb-2">
+                    <div class="bg-yellow-50 border-2 border-gray-100 mb-4">
                         <div class="p-4">
                             <p class="text-xl">{{ $review->user_name }}</p>
                             <p class="mx-2 my-1">{{ $review->comment }}</p>

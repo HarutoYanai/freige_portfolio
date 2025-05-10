@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\RecipeHistory;
+use App\Models\Recipe;
 use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function create(RecipeHistory $recipe) {
+    public function create(Recipe $recipe) {
         return view('project.reviewcreate')->with('recipe', $recipe);
     }
 
-    public function post(Request $request, RecipeHistory $recipe) {
+    public function post(Request $request, Recipe $recipe) {
         $review = new Review();
         $input = $request->input('comment');
         $review->user_id = auth()->id();

@@ -16,10 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('recipe_id')->unique();
             $table->string('recipe_title');
-            $table->string('recipe_url');
             $table->string('image_url');
-            $table->json('recipe_material');//配列で保存
-            $table->integer('rank');
             $table->timestamps();
         });
     }

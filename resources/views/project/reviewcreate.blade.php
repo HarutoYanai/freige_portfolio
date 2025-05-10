@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="text-2xl text-zinc-500 px-10 py-8 mx-52 flex">
+    <div class="text-2xl text-zinc-400 font-medium px-10 py-8 mx-52 flex">
         <p>{{ $recipe->recipe_title }}</p>
         <p>のレビュー登録</p>
     </div>
@@ -17,7 +17,7 @@
         </div>
     </form>
 
-    <div class="text-xl text-zinc-400 font-medium text-center px-10 py-8 mx-52">
+    <div class="text-xl text-zinc-500 font-medium text-center px-10 py-8 mx-52">
         <p>レビューしてくれてありがとう！</p>
     </div>
 </x-app-layout>
