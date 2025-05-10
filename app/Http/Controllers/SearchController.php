@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Recipe;
 use App\Models\RecipeHistory;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -14,8 +15,10 @@ use RakutenRws_Client;
 
 class SearchController extends Controller
 {
-    public function top() {
-        return view('project.top');
+    public function top(RecipeHistory $recipeHistory) {
+        //created_atで降順に並べた後、limitで件数制限をかける
+        $recipeHistories = $recipeHistory->where('user_id', auth()->id())->orderBy('created_at', 'desc')->Limit(3)->get();
+        return view('project.top')->with('recipeHistories', $recipeHistories);
     }
 
     public function search(Category $category, Request $request) {
@@ -57,16 +60,16 @@ class SearchController extends Controller
                 }
                 //dd($recipes);
                 
-                //recipe_hitoriesテーブルに保存
+                //recipesテーブルに保存
                 foreach($recipes as $data) {
                     //データが既に格納されているかチェック
-                    $existing = RecipeHistory::where('recipe_id', $data['recipe_id'])->first();
+                    $existing = Recipe::where('user_id', $data['user_id'])->where('recipe_id', $data['recipe_id'])->first();
                     
                     if($existing) {
                         $existing->fill($data)->update();
                     } else {
-                        $recipeHistory = new RecipeHistory;
-                        $recipeHistory->fill($data)->save();
+                        $recipe = new Recipe;
+                        $recipe->fill($data)->save();
                     }
                 }
                 
@@ -79,10 +82,18 @@ class SearchController extends Controller
         }
     }
     
-    public function show(RecipeHistory $recipe) {
-        //dd($recipeHistory);
+    public function show(Recipe $recipe) {
+        //recipe_historyテーブルに格納
+        $existing = RecipeHistory::where('user_id', $recipe['user_id'])->where('recipe_id', $recipe['recipe_id'])->first();
+        if ($existing) {
+            $existing->fill($recipe->only(['user_id', 'recipe_id', 'recipe_title', 'image_url']))->update();
+        } else {
+            $recipeHistory = new RecipeHistory;
+            $recipeHistory->fill($recipe->only(['user_id', 'recipe_id', 'recipe_title', 'image_url']))->save();
+        }
+
         $review = new Review;
-        $reviews = $review->where('recipe_id', $recipe->recipe_id)->latestLimit(5)->get();
+        $reviews = $review->where('recipe_id', $recipe->recipe_id)->orderBy('created_at', 'desc')->limit(3)->get();
         return view('project.view', compact('recipe', 'reviews'));
        
     }

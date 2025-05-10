@@ -16,15 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
-});
+}); 
 
 Route::get('/dashboard', function () {
     return view('project.top');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); */
 
 Route::controller(SearchController::class)->middleware(['auth'])->group(function(){
+    Route::get('/dashboard', 'top')->name('dashboard');
     Route::get('/', 'top')->name('top');
     Route::get('/search', 'search')->name('search');
     Route::get('/search/{recipe}', 'show')->name('search.show');

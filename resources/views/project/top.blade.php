@@ -5,15 +5,15 @@
         </div>
     </div>
 
-    <div class="py-6 rounded-md">
-        <div class="text-2xl text-zinc-400 font-bold px-36 py-3.5">
+    <div class="mx-32 mt-10 pb-12 border-b-2 border-gray-400 ">
+        <div class="text-3xl text-zinc-400 font-bold mx-20 my-5">
             <p>余っている食材からレシピを検索！</p>
         </div>
 
         <form action="{{ route('search') }}" method="get" class="">
             @csrf
-            <div class="flex flex-row pl-40 items-center gap-x-4">
-                <div class="w-1/3">
+            <div class="flex flex-row mx-28 items-center gap-x-5">
+                <div class="w-2/5">
                     <input type="text" name="ingredient" placeholder="食材をここに入力" class="text-sm text-zinc-500 border border-gray-400 rounded-lg w-full" />
                 </div>
                 <div class="w-1/12">
@@ -24,7 +24,23 @@
                     </button>
                 </div>
             </div>
-            
         </form>
+    </div>
+
+    <div class="mx-32 my-10">
+        <!-- 閲覧履歴 -->
+        <div class="mx-16 mt-10">
+            <p class="text-2xl text-zinc-400 font-medium mb-6">閲覧履歴</p>
+            <div class="flex gap-x-8">
+            @foreach ($recipeHistories as $recipeHistory)
+                <a href="{{ route('search.show', ['recipe' => $recipeHistory['recipe_id']]) }}" class="bg-yellow-50 w-80 h-56 shadow-sm rounded-md hover:shadow-md">
+                    <div class="p-5 w-full flex flex-col gap-y-3 items-center text-center">
+                        <p class="text-zinc-500">{{ $recipeHistory['recipe_title'] }}</p>
+                        <img src="{{ $recipeHistory['image_url'] }}" class="size-32">
+                    </div>
+                </a>
+            @endforeach
+            </div>
+        </div>
     </div>
 </x-app-layout>

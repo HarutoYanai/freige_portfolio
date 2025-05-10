@@ -43,6 +43,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
     
+    //recipeに対するリレーション
+    public function recipes() {
+        return $this->hasMany(RecipeHistory::class);
+    }
+    
     //recipeHistoryに対するリレーション
     public function recipeHistories() {
         return $this->hasMany(RecipeHistory::class);
