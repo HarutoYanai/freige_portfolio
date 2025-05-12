@@ -36,6 +36,13 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
+            'category_id' => '33',
+            'category_name' => '卵',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+        ]);
+
+        DB::table('categories')->insert([
             'category_id' => '10-275',
             'category_name' => '牛肉',
             'created_at' => new DateTime(),
@@ -549,7 +556,7 @@ class CategorySeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'category_id' => '12-9595',
+            'category_id' => '12-95',
             'category_name' => 'にんじん',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
