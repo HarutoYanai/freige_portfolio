@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('recipe_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('recipe_id')->unique();
+            $table->string('recipe_id');
+            $table->unique(['user_id','recipe_id']);
             $table->string('recipe_title');
             $table->string('image_url');
             $table->timestamps();

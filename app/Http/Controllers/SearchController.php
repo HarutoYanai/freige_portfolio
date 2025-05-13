@@ -15,9 +15,9 @@ use RakutenRws_Client;
 
 class SearchController extends Controller
 {
-    public function top(RecipeHistory $recipeHistory) {
+    public function top() {
         //created_atで降順に並べた後、limitで件数制限をかける
-        $recipeHistories = $recipeHistory->where('user_id', auth()->id())->orderBy('created_at', 'desc')->Limit(3)->get();
+        $recipeHistories = RecipeHistory::where('user_id', auth()->id())->orderBy('created_at', 'desc')->Limit(3)->get();
         return view('project.top')->with('recipeHistories', $recipeHistories);
     }
 
