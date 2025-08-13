@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Recipe;
 use App\Models\RecipeHistory;
 use App\Models\Review;
-use Illuminate\Http\Request;
+use App\Http\Requests\SearchRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use RakutenRws_Client;
@@ -21,7 +21,7 @@ class SearchController extends Controller
         return view('project.top')->with('recipeHistories', $recipeHistories);
     }
 
-    public function search(Category $category, Request $request) {
+    public function search(Category $category, SearchRequest $request) {
         //楽天APIクライアントの作成
         $client = new RakutenRws_Client();
         $client->setApplicationId(config('app.rakuten_app_id'));

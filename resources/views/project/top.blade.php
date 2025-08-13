@@ -14,7 +14,7 @@
             @csrf
             <div class="flex flex-row mx-28 items-center gap-x-5">
                 <div class="w-2/5">
-                    <input type="text" name="ingredient" placeholder="食材をここに入力" class="text-sm text-zinc-500 border border-gray-400 rounded-lg w-full" />
+                    <input type="text" name="ingredient" placeholder="食材をひとつここに入力" class="text-sm text-zinc-500 border border-gray-400 rounded-lg w-full" />
                 </div>
                 <div class="w-1/12">
                     <button type="submit" class="text-zinc-500 border-2 border-gray-500 flex items-center justify-center p-1 rounded-lg w-full hover:bg-yellow-50">
@@ -25,6 +25,9 @@
                 </div>
             </div>
         </form>
+        <div class="mx-28 mt-5">
+            <p class="text-base text-red-500">{{ $errors->first('ingredient') }}</p>
+        </div>
     </div>
 
     <div class="mx-32 my-10">
