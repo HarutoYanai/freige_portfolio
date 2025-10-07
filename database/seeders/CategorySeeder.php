@@ -1,5 +1,5 @@
 <?php
-
+//recipesテーブルへのシーディングファイル　対応材料はここに記入
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -813,9 +813,5 @@ class CategorySeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
-
-        
-
-        
     }
 }

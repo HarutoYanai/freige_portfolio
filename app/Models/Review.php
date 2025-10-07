@@ -1,5 +1,5 @@
 <?php
-
+//reviewsテーブルのモデルクラス
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +10,8 @@ class Review extends Model
     use HasFactory;
 
     //userに対するリレーション
-    public function user() {
+    public function user()
+    {
         return $this->belongTo(User::class);
     }
 }

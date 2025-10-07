@@ -1,10 +1,13 @@
+<!-- トップ画面 -->
 <x-app-layout>
+    <!-- タイトル -->
     <div class="items-center py-6 border-b-4 border-gray-500 rounded-md">
         <div class="text-6xl text-zinc-400 font-extrabold text-center">
             <p>Freige</p>
         </div>
     </div>
 
+    <!-- 検索ボックス -->
     <div class="mx-32 mt-10 pb-12 border-b-2 border-gray-400 ">
         <div class="text-3xl text-zinc-400 font-bold mx-20 my-5">
             <p>余っている食材からレシピを検索！</p>
@@ -35,14 +38,14 @@
         <div class="mx-16 mt-10">
             <p class="text-2xl text-zinc-400 font-medium mb-6">閲覧履歴</p>
             <div class="flex gap-x-8">
-            @foreach ($recipeHistories as $recipeHistory)
+                @foreach ($recipeHistories as $recipeHistory)
                 <a href="{{ route('search.show', ['recipe' => $recipeHistory['recipe_id']]) }}" class="bg-yellow-50 w-80 h-56 shadow-sm rounded-md hover:shadow-md">
                     <div class="p-5 w-full flex flex-col gap-y-3 items-center text-center">
                         <p class="text-zinc-500">{{ $recipeHistory['recipe_title'] }}</p>
                         <img src="{{ $recipeHistory['image_url'] }}" class="size-32">
                     </div>
                 </a>
-            @endforeach
+                @endforeach
             </div>
         </div>
     </div>
