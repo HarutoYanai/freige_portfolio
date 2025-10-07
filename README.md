@@ -1,66 +1,104 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### レシピ検索アプリ friege ###
+## 概要 ##
+楽天レシピカテゴリ別ランキングAPIを利用したレシピ検索アプリです。MVCモデルを軸としています。
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# ログイン機能 #
+ログイン機能を**Laravel Breeze**を用いて実装しました。
 
-## About Laravel
+# レシピ検索機能 #
+材料をひとつ入れることで、その材料を使用したレシピを五件出力します。
+出力されたレシピを検索すると、そのレシピの詳細画面が表示されます。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# レビュー作成・表示機能
+レシピに対するレビューを作成し、それをユーザー名とともに詳細画面の下部に表示するようにしました。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# 閲覧レシピ表示機能 #
+レシピ詳細画面を開いたレシピについて、新しいものから３件をトップ画面に表示するようにしました。
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 技術 ##
+## Laravel ##
+バックエンドは基本PHPのフレームワーク**Laravel**で実装しました。フロントエンドについては、Laravelのbladeファイルを用いました。
 
-## Learning Laravel
+## レイアウト・デザイン ##
+レイアウトについては、**Laravel Breeze**を利用しました。また、デザインは**tailwindCSS**を用いて整えました。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# データベース #
+データベース管理システムとして、**MySQL**を利用しました。
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# 開発環境 #
+開発環境は、**Dockerコンテナ**を利用しました。
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 実装ファイルについて ##
+# viewクラス src\resources\views\project\ #
+**top.blade.php**：トップ画面
+**index.blade.php**：検索結果表示画面
+**view.blade.php**：レシピ詳細画面
+**reviewcreate.php**：レビュー作成画面
 
-## Laravel Sponsors
+# modelクラス src\app\Models\ #
+**Category.php**：入力材料と同レコードの楽天レシピAPI利用時に必要なIDを取得
+**Recipe.php**：レシピ詳細を検索結果時にrecipesテーブルに格納。レシピ詳細表示時に情報を取得
+**RecipeHistory.php**：詳細を閲覧したレシピの詳細データのみを格納。閲覧履歴表示時に取得
+**Review.php**：作成したレビューを格納。レビュー表示時に取得
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# controllerクラス src\app\Http\Controllers\ #
+**SearchController**：レシピ検索"search"、レシピ詳細表示"show"
+**ReviewController**：レビュー作成画面移行"create"、レビュー登録"post"
 
-### Premium Partners
+# その他重要ファイル #
+**src\routes\web.php**：ルートを記述。全てAuthenticationをかませており、ログインしているユーザーのみ利用可能
+**src\database\migrations**：マイグレーションファイルを格納している
+**src\database\seeders\CategorySeeder.php**：categoriesテーブルに対するシーディングファイル。検索に対応している材料を追加するならこのファイル
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 実際の画面 ##
+# ログイン画面 #
+![ログイン画面](src\public\images\login.png)
 
-## Contributing
+# トップ画面 #
+トップ画面
+![トップ画面1](src\public\images\top1.png)
+テキストボックスに材料を入力
+![トップ画面2](src\public\images\top2.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 検索結果表示画面 #
+検索結果上部
+![検索結果1](src\public\images\search_result1.png)
+検索結果下部
+![検索結果2](src\public\images\search_result2.png)
 
-## Code of Conduct
+一番上のレシピを選択してみます
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# レシピ詳細表示画面 #
+詳細画面上部
+![詳細1](src\public\images\recipe1.png)
+詳細画面下部
+![詳細2](src\public\images\recipe2.png)
 
-## Security Vulnerabilities
+「レビュー作成は**こちら**」からレビュー作成画面に遷移
+# レビュー作成画面 #
+レビュー作成画面
+![レビュー作成](src\public\images\review_create.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+送信後のレビュー表示
+![レビュー表示](src\public\images\recipe_after_review.png)
 
-## License
+レシピ詳細閲覧後のトップ画面
+![レシピ詳細after](src\public\images\top_after_view_recipe.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 工夫した点 ##
+・ユーザーが見やすいような**シンプルなデザイン**にした。
+・**閲覧履歴**を表示することで、気になるレシピをもう一度見やすくした。
+・材料が対応していない、または未入力の場合、**バリデーションメッセージ**を表示するようにした。
+材料未入力の場合
+![材料未入力](src\public\images\validation_no_ingredient.png)
+材料未対応の場合
+![材料未対応](src\public\images\validation_not_responsive.png)
+
+## 改善点 ##
+ユーザビリティのさらなる向上を向けて、以下の課題を挙げており、改善予定です。
+
+・レシピ検索が1つの材料でしかできないため、**複数材料での検索**に対応させたい。APIの変更を検討したほうが良い。
+・一人当たり何件でもレビューを登録できるため、**一件のみ登録**できるようにしたい。
+・星形マークによる**お気に入りレシピ登録機能**を実装したい。
+・デザインのブラッシュアップ
+・フルページ以外のUI調整

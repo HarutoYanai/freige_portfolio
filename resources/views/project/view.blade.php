@@ -1,3 +1,4 @@
+<!-- レシピ詳細画面 -->
 <x-app-layout>
     <div class="text-zinc-500 border-b-2 border-gray-400 px-10 py-8 mx-52">
         <div class="flex justify-between gap-x-1">
@@ -15,7 +16,9 @@
         </div>
     </div>
 
+    <!-- レシピ詳細 -->
     <div class="text-zinc-500 border-b-2 border-gray-400 px-12 py-8 mx-52">
+        <!-- 材料一覧 -->
         <div class="text-2xl font-medium">
             <p>材料</p>
         </div>
@@ -26,7 +29,8 @@
             </div>
             @endforeach
         </div>
-        
+
+        <!-- 楽天レシピへのURL -->
         <div class="flex flex-col">
             <div class="text-xl flex justify-end">
                 <div class="">
@@ -42,21 +46,25 @@
         </div>
     </div>
 
+    <!-- レビュー関係 -->
     <div class="text-zinc-500 px-12 py-8 mx-52">
         <div class="">
             <div class="text-2xl font-medium">
                 <p>レビュー</p>
             </div>
+            <!-- レビュー一覧 -->
             <div class="mx-8 my-6">
                 @foreach ($reviews as $review)
-                    <div class="bg-yellow-50 border-2 border-gray-100 mb-4">
-                        <div class="p-4">
-                            <p class="text-xl">{{ $review->user_name }}</p>
-                            <p class="mx-2 my-1">{{ $review->comment }}</p>
-                        </div>
+                <div class="bg-yellow-50 border-2 border-gray-100 mb-4">
+                    <div class="p-4">
+                        <p class="text-xl">{{ $review->user_name }}</p>
+                        <p class="mx-2 my-1">{{ $review->comment }}</p>
                     </div>
+                </div>
                 @endforeach
             </div>
+
+            <!-- reviewcreateへの遷移 -->
             <div class="text-xl flex justify-end">
                 <div class="">
                     <p>レビュー作成は</p>

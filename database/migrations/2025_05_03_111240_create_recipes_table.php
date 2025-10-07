@@ -1,5 +1,5 @@
 <?php
-
+//recipesテーブルのマイグレーションファイル
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('recipe_title');
             $table->string('recipe_url');
             $table->string('image_url');
-            $table->json('recipe_material');//配列で保存
+            $table->json('recipe_material'); //配列で保存
             $table->integer('rank');
             $table->timestamps();
         });

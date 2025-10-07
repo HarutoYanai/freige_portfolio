@@ -1,5 +1,5 @@
 <?php
-
+//reviewsテーブルのマイグレーションファイル
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->integer('recipe_id');
             $table->string('comment');
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 

@@ -1,5 +1,5 @@
 <?php
-
+//usersテーブルのモデルクラス
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -42,19 +42,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    
+
     //recipeに対するリレーション
-    public function recipes() {
+    public function recipes()
+    {
         return $this->hasMany(RecipeHistory::class);
     }
-    
+
     //recipeHistoryに対するリレーション
-    public function recipeHistories() {
+    public function recipeHistories()
+    {
         return $this->hasMany(RecipeHistory::class);
     }
     //reviewに対するリレーション
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany(review::class);
     }
-    
 }

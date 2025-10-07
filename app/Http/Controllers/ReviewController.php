@@ -8,11 +8,24 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function create(Recipe $recipe) {
+    /**
+     * レビュー作成画面表示
+     * @param Recipe 
+     * @return src\resources\views\project\reviewcreate.blade.php
+     */
+    public function create(Recipe $recipe)
+    {
         return view('project.reviewcreate')->with('recipe', $recipe);
     }
 
-    public function post(Request $request, Recipe $recipe) {
+    /**
+     * レビュー登録動作
+     * @param Request ポストされたレビュー文
+     * @param Recipe
+     * @return src\resources\views\project\view.blade.php
+     */
+    public function post(Request $request, Recipe $recipe)
+    {
         $review = new Review();
         $input = $request->input('comment');
         $review->user_id = auth()->id();
@@ -20,8 +33,7 @@ class ReviewController extends Controller
         $review->recipe_id = $recipe->recipe_id;
         $review->comment = $input;
         $review->save();
-        
-        //dd($recipe->recipe_id);
+
         return redirect()->route('search.show', ['recipe' => $recipe->recipe_id]);
     }
 }

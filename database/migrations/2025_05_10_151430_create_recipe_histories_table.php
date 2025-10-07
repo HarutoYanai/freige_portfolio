@@ -1,5 +1,5 @@
 <?php
-
+//recipe_hitoriesテーブルのマイグレーションファイル
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('recipe_id');
-            $table->unique(['user_id','recipe_id']);
+            $table->unique(['user_id', 'recipe_id']);
             $table->string('recipe_title');
             $table->string('image_url');
             $table->timestamps();

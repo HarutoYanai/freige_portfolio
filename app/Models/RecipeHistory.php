@@ -1,5 +1,5 @@
 <?php
-
+// recipe_Historiesテーブルのモデルクラス
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +10,8 @@ class RecipeHistory extends Model
     use HasFactory;
 
     //Userに対するリレーション
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 

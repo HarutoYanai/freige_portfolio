@@ -1,3 +1,4 @@
+<!-- レビュー登録画面 -->
 <x-app-layout>
     <div class="text-2xl text-zinc-400 font-medium px-10 py-8 mx-52 flex">
         <p>{{ $recipe->recipe_title }}</p>
